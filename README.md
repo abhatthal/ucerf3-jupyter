@@ -1,5 +1,5 @@
 # UCERF3 Jupyter
-This Docker project provides a Jupyerlab session 
+This Docker project provides a Jupyerlab session with a web terminal for executing UCERF3 scripts.
 ## Download
 Download latest build of the ucerf3_jup image. This image is prebuilt and will use OpenJDK 21 with the latest version of OpenSHA from opensha/opensha:etas-launcher-stable.
 
