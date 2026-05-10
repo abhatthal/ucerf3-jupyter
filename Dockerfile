@@ -19,7 +19,8 @@ ENV APP_UNAME=scecuser \
 APP_GRPNAME=scec \
 APP_UID=1000 \
 APP_GID=20 \
-BDATE=20250213
+BDATE=20250213 \
+CONDA_PLUGINS_AUTO_ACCEPT_TOS=true
 
 # Retrieve the userid and groupid from the args so 
 # Define these parameters to support building and deploying on EC2 so user is not root
@@ -59,7 +60,7 @@ RUN ARCH=$(uname -m) \
     else \
         echo "Unsupported architecture: $ARCH" && exit 1; \
     fi \
-    && mkdir /home/$APP_UNAME/.conda \
+    && mkdir -p /home/$APP_UNAME/.conda \
     && bash /tmp/miniconda.sh -b \
     && rm -f /tmp/miniconda.sh \
     && echo "Running $(conda --version)" \
@@ -102,6 +103,6 @@ WORKDIR /home/$APP_UNAME
 VOLUME ["/home/scecuser/notebooks"]
 
 #ENTRYPOINT ["/bin/bash"]
-ENTRYPOINT ["/usr/bin/jupyter","lab","--ip=0.0.0.0","--port=8080", \
+ENTRYPOINT ["/usr/bin/jupyter","lab","--ip=0.0.0.0","--port=8888", \
 			"--notebook-dir=/home/scecuser/notebooks","--allow-root","--no-browser"]
 
