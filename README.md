@@ -15,6 +15,9 @@ If you want to ensure you have the latest changes, you can build the image yours
 ## Run
 > docker run -p 8888:8888 --name ucerf3_jup sceccode/ucerf3_jup:latest
 
+You can also mount a volume for notebooks or target UCERF3 outputs.
+> docker run --rm -p 8888:8888 -v $HOME/notebooks:/home/scecuser/notebooks -v $HOME/target:/home/scecuser/target sceccode/ucerf3_jup:latest
+
 After the container is running, access Jupyterlab with the link specified in the Docker logs.
 
 ## Debugging
