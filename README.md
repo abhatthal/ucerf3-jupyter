@@ -40,7 +40,7 @@ docker buildx inspect multiarch
 docker buildx build \
              --platform linux/amd64,linux/arm64 \
              --tag sceccode/ucerf3_jup:latest \
-             --tag sceccode/cs_data_tutorial:$(date +%Y%m%d) \
+             --tag sceccode/ucerf3_jup:$(date +%Y%m%d) \
              --push .
 ```
 
