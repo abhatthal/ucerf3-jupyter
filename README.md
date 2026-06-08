@@ -24,4 +24,23 @@ After the container is running, access Jupyterlab with the link specified in the
 Get interactive bash shell for active container
 > docker exec -it $(docker ps | awk '{print $1}' | tail -n 1) /bin/bash
 
+## Deployment
+Build, tag, and push a cross-platform image to DockerHub.
+```
+# Create a new builder instance with docker-container driver
+# This driver supports multiple platforms via QEMU emulation
+docker buildx create --name multiarch --driver docker-container --bootstrap
+
+# Set the new builder as the default
+docker buildx use multiarch
+
+# Verify supported platforms (should show amd64, arm64, arm/v7, etc.)
+docker buildx inspect multiarch
+
+docker buildx build \
+             --platform linux/amd64,linux/arm64 \
+             --tag sceccode/ucerf3_jup:latest \
+             --tag sceccode/cs_data_tutorial:$(date +%Y%m%d) \
+             --push .
+```
 
